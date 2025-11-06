@@ -9,7 +9,7 @@ This project is built with a modern, production-ready tech stack:
 - **Framework**: [Next.js 15](https://nextjs.org/) with React 19
 - **API Layer**: [tRPC](https://trpc.io) for end-to-end typesafe APIs
 - **Database**: NeonDB (Serverless Postgres) with Drizzle ORM
-- **Authentication**: Built-in auth system
+- **Authentication**: [Better Auth](https://www.better-auth.com/) with GitHub and Google OAuth providers
 - **State Management**: TanStack Query (React Query) with tRPC integration
 - **Type Safety**: TypeScript
 - **UI Components**:
@@ -36,7 +36,14 @@ pnpm install
 ```
 
 3. Set up your environment variables:
-Create a `.env` file in the root directory and add necessary environment variables (refer to `.env.example` if available)
+Create a `.env` file in the root directory with the following variables:
+```env
+DATABASE_URL=your_neon_db_connection_string
+GITHUB_CLIENT_ID=your_github_oauth_client_id
+GITHUB_CLIENT_SECRET=your_github_oauth_client_secret
+GOOGLE_CLIENT_ID=your_google_oauth_client_id
+GOOGLE_CLIENT_SECRET=your_google_oauth_client_secret
+```
 
 4. Run the development server:
 ```bash
@@ -51,12 +58,20 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## 📚 Project Structure
 
-- `/src` - Main source code directory
-- `/drizzle` - Database schema and migrations
-- `/public` - Static assets
-- `/src/components` - Reusable UI components
-- `/src/app` - Next.js app router pages and layouts
-- `/src/lib` - Utility functions and shared logic
+```
+├── src/
+│   ├── app/               # Next.js app router (pages, layouts, API routes)
+│   ├── components/        # Reusable UI components
+│   │   ├── auth/         # Authentication components
+│   │   └── ui/           # shadcn/ui components
+│   ├── db/               # Database schema and connection
+│   ├── hooks/            # Custom React hooks
+│   ├── lib/              # Utility functions and configurations
+│   ├── providers/        # React context providers
+│   └── trpc/             # tRPC client and server setup
+├── drizzle/              # Database migrations and metadata
+└── package.json          # Project dependencies and scripts
+```
 
 ## 🎥 YouTube Walkthroughs
 
@@ -73,13 +88,14 @@ Follow along with our walkthroughs to learn:
 
 ## 📦 Key Features
 
-- Modern React development with Next.js
-- Type-safe API layer with tRPC
-- Database operations with Drizzle ORM
-- Beautiful UI components from shadcn/ui
-- Built-in authentication system
-- Responsive design with Tailwind CSS
-- Development tools configured (ESLint, TypeScript)
+- **Modern React Development**: Next.js 15 with React 19 and Turbopack
+- **Type-Safe APIs**: End-to-end type safety with tRPC
+- **Database**: PostgreSQL with Drizzle ORM and migrations
+- **Authentication**: Better Auth with GitHub and Google OAuth
+- **UI Components**: Complete shadcn/ui component library with Radix UI
+- **Styling**: Tailwind CSS v4 with responsive design
+- **State Management**: TanStack Query for server state
+- **Development Tools**: TypeScript, ESLint, and modern tooling configured
 
 ## 🤝 Contributing
 
