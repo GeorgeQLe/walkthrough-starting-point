@@ -1,17 +1,16 @@
 import { ErrorBoundary } from "react-error-boundary";
-import { redirect } from "next/navigation";
 import { Suspense } from "react";
 
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { getQueryClient } from "@/trpc/server";
-import { getSession } from "@/lib/auth";
+import { getSession, redirectToLogin } from "@/lib/auth";
 
 import { HomePageContents } from "./_ui/home-page-contents";
 
 const HomePage = async () => {
   const session = await getSession();
 
-  if(!session) redirect("/login");
+  if(!session) redirectToLogin("/home");
   
   const queryClient = getQueryClient();
 
