@@ -1,4 +1,5 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import { FaGithub } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 
@@ -6,13 +7,16 @@ import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 
 export const LoginButtons = () => {
+  const searchParams = useSearchParams();
+  const returnTo = searchParams.get("returnTo") || "/home";
+
   const signinWithGithub = async () => await authClient.signIn.social({
-    callbackURL: "/home",
+    callbackURL: decodeURIComponent(returnTo),
     provider: "github",
   });
 
   const signinWithGoogle = async () => await authClient.signIn.social({
-    callbackURL: "/home",
+    callbackURL: decodeURIComponent(returnTo),
     provider: "google",
   });
 

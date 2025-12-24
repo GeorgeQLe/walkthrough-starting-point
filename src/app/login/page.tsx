@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { Suspense } from "react";
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { getSession } from "@/lib/auth";
@@ -17,7 +18,9 @@ const LoginPage = async () => {
           <CardDescription>Using your preferred login method</CardDescription>
         </CardHeader>
         <CardContent>
-          <LoginButtons/>
+          <Suspense fallback={<div className="h-9" />}>
+            <LoginButtons/>
+          </Suspense>
         </CardContent>
       </Card>
     </div>
